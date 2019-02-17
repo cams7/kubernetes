@@ -13,11 +13,16 @@ echo "[TASK 2] Install docker container engine"
 yum install -y -q yum-utils device-mapper-persistent-data lvm2 > /dev/null 2>&1
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo > /dev/null 2>&1
 yum install -y -q docker-ce >/dev/null 2>&1
+usermod -aG docker vagrant
+
+cat >>/etc/docker/daemon.json<<EOF
+{ "insecure-registries":["172.42.42.100:5000", "kmaster.example.com:5000"] }
+EOF
 
 # Enable docker service
-echo "[TASK 3] Enable and start docker service"
+echo "[TASK 3] Enable and restart docker service"
 systemctl enable docker >/dev/null 2>&1
-systemctl start docker
+systemctl restart docker
 
 # Disable SELinux
 echo "[TASK 4] Disable SELinux"
@@ -63,6 +68,10 @@ yum install -y -q kubeadm kubelet kubectl >/dev/null 2>&1
 echo "[TASK 10] Enable and start kubelet service"
 systemctl enable kubelet >/dev/null 2>&1
 systemctl start kubelet >/dev/null 2>&1
+
+#Enabling shell autocompletion
+yum install bash-completion -y > /dev/null 2>&1
+echo "source <(kubectl completion bash)" >> ~/.bashrc
 
 # Enable ssh password authentication
 echo "[TASK 11] Enable ssh password authentication"
