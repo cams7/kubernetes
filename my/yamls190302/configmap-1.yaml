@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-configmap
+data:
+  channel.name: "cams7"
+  channel.owner: "Cesar A. Magalhaes"

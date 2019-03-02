@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: hello-node-daemonset
+spec:
+  selector:
+    matchLabels:
+      demotype: hello-node-daemonset-demo
+  template:
+    metadata:
+      labels:
+        demotype: hello-node-daemonset-demo 
+    spec: 
+      containers:
+      - image: kmaster.example.com:5000/hello-node:alpine
+        name: hello-node
+      nodeSelector:
+        gpupresent: "true"

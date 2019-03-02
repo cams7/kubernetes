@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: helloworld
+spec:
+#  completions: 2
+#  parallelism: 2
+#  backoffLimit: 2
+  activeDeadlineSeconds: 10
+  template:
+    spec:
+      containers:
+      - image: busybox
+        name: busybox
+#        command: ["echo", "Hello Kubernetes!!!"]
+        command: ["sleep", "60"]
+#        command: ["ls", "/notfound"]      
+      restartPolicy: Never

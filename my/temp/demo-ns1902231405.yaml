@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2019-02-23T17:01:13Z"
+  name: demo
+  resourceVersion: "54686"
+  selfLink: /api/v1/namespaces/demo
+  uid: a03b0075-378c-11e9-a01c-52540075dc3d
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

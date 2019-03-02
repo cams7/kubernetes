@@ -13,9 +13,10 @@ Vagrant.configure(2) do |config|
     kmaster.vm.box_version = "1901.01"
     kmaster.vm.hostname = "kmaster.example.com"
     kmaster.vm.network "private_network", ip: "172.42.42.100"
+    kmaster.vm.synced_folder "/home/cams7/Desenv/Kubernetes/tutorials", "/home/vagrant/tutorials"
     kmaster.vm.provider "virtualbox" do |v|
       v.name = "kmaster"
-      v.memory = 2048
+      v.memory = 1536
       v.cpus = 4
       v.customize ["modifyvm", :id, "--groups", "/k8s190216"]
     end
@@ -33,7 +34,7 @@ Vagrant.configure(2) do |config|
       workernode.vm.network "private_network", ip: "172.42.42.10#{i}"
       workernode.vm.provider "virtualbox" do |v|
         v.name = "kworker#{i}"
-        v.memory = 1024
+        v.memory = 2048
         v.cpus = 4
         v.customize ["modifyvm", :id, "--groups", "/k8s190216"]
       end

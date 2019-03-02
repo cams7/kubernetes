@@ -1,0 +1,19 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: helloworld-cron
+spec:
+  schedule: "* * * * *"
+#  successfulJobsHistoryLimit: 0
+#  failedJobsHistoryLimit: 0
+  concurrencyPolicy: Allow
+  suspend: false	
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - image: busybox
+            name: busybox
+            command: ["echo", "Hello Kubernetes!!!"]    
+          restartPolicy: Never
