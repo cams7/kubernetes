@@ -1,0 +1,6 @@
+Master:
+  AdminPassword: admin
+Persistence:
+  StorageClass: "managed-nfs-storage"
+rbac:
+  install: true
